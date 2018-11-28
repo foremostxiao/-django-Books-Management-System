@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+ {% block title %}
+    <title>book</title>
+ {% endblock %}
+
+{% block css %}
+    .last{color: red}
+     th,a,td{text-align: center}
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="padding-bottom: 5px;">
+        <a href="/addbook/" class="btn btn-info glyphicon glyphicon-plus">添加图书</a>
+    </div>
+    <div class="container">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>书名</th>
+                <th>价格</th>
+                <th>出版日期</th>
+                <th>出版社</th>
+                <th>作者</th>
+                <th class="last">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for book in book_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td hidden>{{ book.id}}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.price }}</td>
+                    <td>{{ book.publish_date|date:'Y-m-d' }}</td>
+                    <td>{{ book.publisher.name }}</td>
+                    <td>
+                       {% for author in book.authors.all %}
+                        {% if forloop.last %}
+                        <span>{{ author.name }}</span>
+                        {% else %}
+                        <span>{{ author.name }}</span>
+                        {% endif %}
+                        {% endfor %}
+                    </td>
+
+                    <td>
+                        <a href="/book/{{ book.pk }}/delete" class="btn btn-danger" >删除</a>
+                        <a href="/book/{{ book.pk }}/edit" class="btn btn-success" >编辑</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}
+
+{#{% block script %}#}
+{#    $(function () {#}
+{#        $("li[class=active]").parent().children().eq(1).addClass("active").siblings().removeClass("active");#}
+{#    })#}
+{#{% endblock %}#}

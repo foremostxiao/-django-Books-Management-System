@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+ {% block title %}
+    <title>publisher</title>
+ {% endblock %}
+
+{% block css %}
+
+     th,a,td{text-align: center}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container" style="padding-bottom: 5px;">
+        <a href="/addpublisher/" class="btn btn-info glyphicon glyphicon-plus">添加出版社</a>
+    </div>
+
+    <div class="container">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>出版社</th>
+                <th>city</th>
+                <th>email</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for publish in publisher_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                     <td hidden>{{ book.id}}</td>
+                    <td><a href="/publisher_book/{{ publish.pk }}">{{ publish.name }}</a></td>
+                    <td>{{ publish.city }}</td>
+                    <td>{{ publish.email }}</td>
+                    <td>
+                        <a href="/delpublisher/{{ publish.pk }}" class="btn btn-danger" >删除</a>
+                        <a href="/editpublisher/{{ publish.pk }}" class="btn btn-success" >编辑</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

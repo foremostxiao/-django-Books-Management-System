@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Title</title>
+    {% endblock %}
+
+   <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+    {% block css %}
+    {% endblock %}
+    </style>
+</head>
+<body>
+{#<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->#}
+
+{#<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->#}
+{#<script src="/static/bootstrap-3.3.7/js/bootstrap.js"></script>#}
+{##}
+{#<script type="text/javascript" src="jquery-3.2.1.js"></script>#}
+{#<script type="text/javascript">#}
+{#   $(function () {#}
+{#       $('container .nav-pills li a').click(function () {#}
+{#           print('111111');#}
+{#           $(this).addClass('active').parent('li').siblings('li').remove('active')#}
+{##}
+{#       })#}
+{#   });#}
+{##}
+{##}
+{#</script>#}
+
+
+<div class="container">
+    <h2>图书管理系统</h2>
+    <br>
+</div>
+
+<div class="container">
+    <ul class="nav nav-tabs  " id="myTab">
+        <li role="presentation" class="active" ><a href="/index/" >主页</a></li>
+        <li role="presentation"><a href="/book/">图书</a></li>
+        <li role="presentation"><a href="/author/">作者</a></li>
+        <li role="presentation"><a href="/publisher/">出版社</a></li>
+    </ul>
+
+</div>
+<br>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+</body>
+
+</html>

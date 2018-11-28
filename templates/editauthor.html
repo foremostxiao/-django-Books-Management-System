@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-4">
+            <h4>编辑作者信息</h4>
+             <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="author">作者姓名</label>
+                    <input type="text" class="form-control" style="margin-bottom: 5px;" id="author" name="name" value="{{ author_obj.name }}">
+                    <span class="label label-danger">{{ status }}</span>
+                </div>
+                 <div class="form-group">
+                     <label for="">年龄</label>
+                     <input type="number" class="form-control" name="age" value="{{ author_obj.age }}">
+                 </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    
+{% endblock %}

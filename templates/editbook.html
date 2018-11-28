@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-4">
+            <h4>编辑图书信息</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="book">书名</label>
+                    <input type="text" class="form-control" id="book" name="title"
+                           value="{{ book_obj.title }}">
+                </div>
+                 <div class="form-group">
+                     <label for="price">价格</label>
+                     <input type="number" class="form-control" id="price" name="price" value="{{ book_obj.price }}">
+                 </div>
+                <div class="form-group">
+                    <label for="pub_date">出版时间</label>
+                    <input type="date" class="form-control" id="pub-date" name="pub_date" value="{{ book_obj.publish_date|date:'Y-m-d'}}">
+                </div>
+
+
+
+                <div class="form-group">
+                    <b style="margin-bottom: 5px;display: inline-block">请选择出版社</b>
+                    <select class="form-control" name="publish_id">
+                        {% for publish in pub_list %}
+                            {% if pubblish == book_obj.publisher %}
+                                <option value="{{ publish.pk }}" selected>{{ publish.name }}</option>
+                            {% else %}
+                                <option value="{{ publish.pk}}">{{ publish.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <b style="margin-bottom: 5px;display: inline-block">请选择作者（可多选）</b>
+                    <select class="form-control" multiple name="authors_id_list">
+                        {% for author in author_list %}
+                            {% if author in book_obj.authors.all %}
+                                <option value="{{ author.pk }}" selected>{{ author.name }}</option>
+                            {% else %}
+                                <option value="{{ author.pk }}">{{ author.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

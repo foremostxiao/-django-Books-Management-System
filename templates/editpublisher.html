@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-4">
+            <h4>编辑出版社信息</h4>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="publisher">出版社名称</label>
+                    <input type="text" class="form-control" style="margin-bottom: 5px;" id="publisher" name="name"
+                           value="{{ pub_obj.name }}">
+                    <span class="label label-danger">{{ status }}</span>
+                </div>
+                <div class="form-group">
+                    <label >city</label>
+                    <input type="text" class="form-control" name="city" value="{{ pub_obj.city }}">
+                </div>
+
+                 <div class="form-group">
+                    <label >email</label>
+                    <input type="email" class="form-control" name="email" value="{{ pub_obj.email}}">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

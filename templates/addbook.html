@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-md-4">
+            <h4>添加图书信息</h4>
+            <form action="/addbook/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="book">书名</label>
+                    <input type="text" class="form-control" id="book" name="title"
+                           placeholder="请输入要添加的书籍名称">
+                </div>
+                 <div class="form-group">
+                        <label for="price">价格</label>
+                        <input type="number" class="form-control" id="price" name="price" >
+                    </div>
+                <div class="form-group">
+                    <label for="date">出版日期</label>
+                    <input type="date" class="form-control" id="date" name="pub_date">
+                </div>
+                <div class="form-group">
+                    <b style="margin-bottom: 5px;display: inline-block">请选择出版社</b>
+                    <select class="form-control" name="publish_id">
+                        {% for pub in pub_list %}
+                            <option value={{ pub.pk }}>{{ pub.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <b style="margin-bottom: 5px;display: inline-block">请选择作者（可多选）</b>
+                    <select class="form-control" multiple name="authors_id_list">
+                        {% for author in author_list %}
+                            <option value={{ author.pk }}>{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
